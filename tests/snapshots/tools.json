@@ -1,0 +1,107 @@
+[
+  {
+    "name": "check_bin",
+    "title": "Validate BIN/IIN",
+    "description": "Check that a Kazakhstan BIN or IIN has 12 digits and a correct check digit.\n\n        Works offline. Use it before looking up a company or person by identifier.\n        ",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "12-digit BIN or IIN, e.g. '123456789012'.",
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "check_binArguments"
+    },
+    "outputSchema": {
+      "description": "Result of validating a BIN or IIN.",
+      "properties": {
+        "value": {
+          "description": "The identifier as received, trimmed.",
+          "title": "Value",
+          "type": "string"
+        },
+        "valid": {
+          "description": "True when the format and check digit are correct.",
+          "title": "Valid",
+          "type": "boolean"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Why the identifier is invalid; null when valid.",
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "value",
+        "valid"
+      ],
+      "title": "BinCheck",
+      "type": "object"
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "server_status",
+    "title": "Server status",
+    "description": "Report the server version and whether it serves mock or live procurement data.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "title": "server_statusArguments"
+    },
+    "outputSchema": {
+      "description": "What this server instance is connected to.",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        },
+        "data_source": {
+          "description": "'mock' (offline sample data) or 'ows' (official live API).",
+          "title": "Data Source",
+          "type": "string"
+        },
+        "token_configured": {
+          "title": "Token Configured",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "data_source",
+        "token_configured"
+      ],
+      "title": "ServerStatus",
+      "type": "object"
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    }
+  }
+]

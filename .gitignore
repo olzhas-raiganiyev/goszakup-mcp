@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+dist/
+build/
+*.egg-info/
+
+# Tooling
+.coverage
+coverage.xml
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Secrets: never commit
+.env
+.env.*
+!.env.example
+
+# Registry login cache
+.mcpregistry_*
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/

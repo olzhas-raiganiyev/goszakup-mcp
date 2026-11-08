@@ -1,0 +1,37 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.olzhas-raiganiyev/goszakup-mcp",
+  "title": "Kazakhstan Public Procurement (goszakup)",
+  "description": "Read-only access to Kazakhstan public procurement data: announcements, lots, contracts, plans, unreliable suppliers.",
+  "repository": {
+    "url": "https://github.com/olzhas-raiganiyev/goszakup-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "goszakup-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "GOSZAKUP_SOURCE",
+          "description": "Data source: 'mock' (offline sample data, default) or 'ows' (official API, needs a token)",
+          "isRequired": false,
+          "format": "string",
+          "default": "mock"
+        },
+        {
+          "name": "GOSZAKUP_TOKEN",
+          "description": "Token for the goszakup.gov.kz open-data API, issued by the Ministry of Finance of Kazakhstan",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
