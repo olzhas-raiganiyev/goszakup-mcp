@@ -51,6 +51,17 @@ async def test_server_status_reports_mock(server, mode: str) -> None:  # type: i
     assert res.structured_content["token_configured"] is False
 
 
+async def test_tool_descriptions_have_no_stray_indentation(server) -> None:  # type: ignore[no-untyped-def]
+    """Raw docstrings keep indentation on Python 3.11-3.12 but not on 3.13+.
+    Descriptions are what the model reads, so they must be identical everywhere."""
+    async with Client(server) as client:
+        result = await client.list_tools()
+    for tool in result.tools:
+        assert tool.description, f"{tool.name} has no description"
+        assert tool.description == tool.description.strip(), tool.name
+        assert "\n " not in tool.description, f"{tool.name}: indented line in description"
+
+
 async def test_tool_schemas_match_snapshot(server) -> None:  # type: ignore[no-untyped-def]
     """Fails when a tool name, description or schema changes. Regenerate on purpose:
     UPDATE_SNAPSHOTS=1 uv run pytest tests/e2e -k snapshot"""
