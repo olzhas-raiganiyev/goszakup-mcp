@@ -2,7 +2,7 @@
   {
     "name": "check_bin",
     "title": "Validate BIN/IIN",
-    "description": "Check that a Kazakhstan BIN or IIN has 12 digits and a correct check digit.\n\n        Works offline. Use it before looking up a company or person by identifier.\n        ",
+    "description": "Check that a Kazakhstan BIN or IIN has 12 digits and a correct check digit.\n\nWorks offline. Use it before looking up a company or person by identifier.",
     "inputSchema": {
       "type": "object",
       "properties": {
